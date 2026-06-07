@@ -25,8 +25,8 @@ export default function Login() {
 
     toast.promise(promise, {
       loading: 'লগইন করা হচ্ছে...',
-      success: 'সফলভাবে লগইন হয়েছে!',
-      error: (err) => err.message || 'লগইন ব্যর্থ হয়েছে। আবার চেষ্টা করুন।'
+      success: 'সফলভাবে লগইন হয়েছে!',
+      error: (err) => err.message || 'লগইন ব্যর্থ হয়েছে। আবার চেষ্টা করুন।'
     });
 
     try {
@@ -38,46 +38,43 @@ export default function Login() {
   };
 
   return (
-    <div className="login-bg" style={{
-      background: 'linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%)',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
-      {/* Decorative background circles */}
-      <div style={{
-        position: 'absolute', top: '-10%', left: '-10%', width: '300px', height: '300px',
-        background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(59,130,246,0) 70%)',
-        borderRadius: '50%', zIndex: 0
-      }}></div>
-      <div style={{
-        position: 'absolute', bottom: '-10%', right: '-10%', width: '250px', height: '250px',
-        background: 'radial-gradient(circle, rgba(217,119,6,0.3) 0%, rgba(217,119,6,0) 70%)',
-        borderRadius: '50%', zIndex: 0
-      }}></div>
+    <div className="login-bg" style={{ position: 'relative', overflow: 'hidden' }}>
+
+      {/* Animated floating blobs using theme colors */}
+      <div className="login-blob login-blob-1" />
+      <div className="login-blob login-blob-2" />
+      <div className="login-blob login-blob-3" />
 
       <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: '400px', margin: '0 auto' }}>
+
+        {/* Logo & Title */}
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <img src="/main_logo.png" alt="Logo" style={{
-            width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover',
-            border: '3px solid rgba(255,255,255,0.2)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-            backgroundColor: '#fff',
-            padding: '2px'
-          }} />
-          <h1 style={{
-            color: 'white', marginTop: '16px', fontSize: '1.6rem', lineHeight: '1.3',
-            textShadow: '0 2px 4px rgba(0,0,0,0.3)', fontWeight: '800'
-          }}>একতা সঞ্চয় ও উদ্যোগ ফাউন্ডেশন </h1>
+          <img
+            src="/main_logo.png"
+            alt="Logo"
+            className="login-logo"
+            style={{
+              width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover',
+              border: '3px solid rgba(255,255,255,0.25)',
+              backgroundColor: '#fff',
+              padding: '2px',
+              display: 'inline-block'
+            }}
+          />
+          <h1 className="login-somiti-title">
+            একতা সঞ্চয় ও উদ্যোগ ফাউন্ডেশন
+          </h1>
         </div>
 
+        {/* Login Card */}
         <div className="login-card" style={{
-          background: 'rgba(255, 255, 255, 0.92)',
+          background: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
           border: '1px solid rgba(255, 255, 255, 0.3)',
           borderRadius: '24px',
           padding: '32px 24px',
-          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)'
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.22)'
         }}>
           <h2 style={{
             marginBottom: '24px', textAlign: 'center', fontSize: '1.4rem',
@@ -97,20 +94,28 @@ export default function Login() {
                 disabled={loadingState}
                 autoCapitalize="none"
                 style={{
-                  backgroundColor: '#f8fafc',
-                  border: '1px solid #cbd5e1',
+                  backgroundColor: '#fefce8',
+                  border: '1px solid #d6b87d',
                   borderRadius: '12px',
                   padding: '12px 16px',
                   fontSize: '1rem',
                   transition: 'all 0.3s ease'
                 }}
-                onFocus={(e) => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(29,78,216,0.1)'; }}
-                onBlur={(e) => { e.target.style.borderColor = '#cbd5e1'; e.target.style.boxShadow = 'none'; }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = 'var(--primary)';
+                  e.target.style.boxShadow = '0 0 0 3px var(--primary-glow)';
+                  e.target.style.backgroundColor = '#fffbeb';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#d6b87d';
+                  e.target.style.boxShadow = 'none';
+                  e.target.style.backgroundColor = '#fefce8';
+                }}
               />
             </div>
 
             <div className="form-group" style={{ marginBottom: '28px' }}>
-              <label className="form-label" htmlFor="password" style={{ fontWeight: '600', color: '#334155' }}>পাসওয়ার্ড</label>
+              <label className="form-label" htmlFor="password" style={{ fontWeight: '600', color: '#334155' }}>পাসওয়ার্ড</label>
               <input
                 type="password"
                 id="password"
@@ -120,15 +125,23 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={loadingState}
                 style={{
-                  backgroundColor: '#f8fafc',
-                  border: '1px solid #cbd5e1',
+                  backgroundColor: '#fefce8',
+                  border: '1px solid #d6b87d',
                   borderRadius: '12px',
                   padding: '12px 16px',
                   fontSize: '1rem',
                   transition: 'all 0.3s ease'
                 }}
-                onFocus={(e) => { e.target.style.borderColor = 'var(--primary)'; e.target.style.boxShadow = '0 0 0 3px rgba(29,78,216,0.1)'; }}
-                onBlur={(e) => { e.target.style.borderColor = '#cbd5e1'; e.target.style.boxShadow = 'none'; }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = 'var(--primary)';
+                  e.target.style.boxShadow = '0 0 0 3px var(--primary-glow)';
+                  e.target.style.backgroundColor = '#fffbeb';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#d6b87d';
+                  e.target.style.boxShadow = 'none';
+                  e.target.style.backgroundColor = '#fefce8';
+                }}
               />
             </div>
 
@@ -143,13 +156,25 @@ export default function Login() {
                 fontSize: '1.1rem',
                 fontWeight: '600',
                 gap: '8px',
-                background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%)',
+                background: loadingState
+                  ? 'var(--primary-dark)'
+                  : 'linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 50%, var(--primary-dark) 100%)',
                 border: 'none',
-                boxShadow: '0 4px 12px rgba(29, 78, 216, 0.3)',
-                transition: 'transform 0.2s, box-shadow 0.2s'
+                boxShadow: '0 4px 14px rgba(180, 83, 9, 0.38)',
+                transition: 'transform 0.2s, box-shadow 0.2s, background 0.3s'
               }}
-              onMouseEnter={(e) => { if (!loadingState) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(29, 78, 216, 0.4)'; } }}
-              onMouseLeave={(e) => { if (!loadingState) { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(29, 78, 216, 0.3)'; } }}
+              onMouseEnter={(e) => {
+                if (!loadingState) {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(180, 83, 9, 0.48)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!loadingState) {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(180, 83, 9, 0.38)';
+                }
+              }}
             >
               <LogIn size={20} />
               <span>{loadingState ? 'প্রবেশ করা হচ্ছে...' : 'লগইন করুন'}</span>
@@ -157,22 +182,24 @@ export default function Login() {
           </form>
         </div>
 
-        <div style={{ marginTop: '30px', textAlign: 'center', fontSize: '0.85rem' }}>
-          <div style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '8px' }}>
-            © {new Date().getFullYear()} একতা সঞ্চয় ও উদ্যোগ ফাউন্ডেশন 
+        {/* Footer */}
+        <div className="login-footer" style={{ marginTop: '28px', textAlign: 'center', fontSize: '0.85rem' }}>
+          <div style={{ color: 'rgba(255,255,255,0.75)', marginBottom: '8px' }}>
+            © {new Date().getFullYear()} একতা সঞ্চয় ও উদ্যোগ ফাউন্ডেশন
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.5 }}>
-            Developed by: <span style={{ fontWeight: 'bold', color: 'rgba(255,255,255,0.85)' }}>Md Arif Uddin</span> | 
-            <a 
-              href="https://wa.me/8801825334505" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontWeight: '700', marginLeft: '2px' }}
+            Developed by: <span style={{ fontWeight: 'bold', color: 'rgba(255,255,255,0.88)' }}>Md Arif Uddin</span> |{' '}
+            <a
+              href="https://wa.me/8801825334505"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'rgba(255,255,255,0.88)', textDecoration: 'none', fontWeight: '700', marginLeft: '2px' }}
             >
               01825334505 (WhatsApp)
             </a>
           </div>
         </div>
+
       </div>
     </div>
   );
